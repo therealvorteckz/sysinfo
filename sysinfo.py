@@ -12,10 +12,14 @@ import shutil
 import socket
 
 
+
+# Battery info for Laptops - yes or no
+laptop  = 'yes' # yes or no
+
 # Formatting Control Characters / Color Codes / ( do not alter reset )
-reset       = '\x0f'
-color1       = '14' # bracket close/open = grey
-color2       = '04' # color for labels = red
+reset  = '\x0f'
+color1  = '14' # bracket close/open = grey
+color2  = '04' # color for labels = red
 
 # IRC Color
 def color(msg: str, foreground: str, background: str='') -> str:
@@ -90,8 +94,11 @@ hdd_total = convertbytes(total_hdd)
 def get_hostname():
     hostname = socket.gethostname()
     return hostname
-
-if battery.power_plugged == True:
-    print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}{color("]", color2)} {color("[", color2)}{color("Uptime:", color1)} {up}{color("]", color2)} {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}{color("]", color2)} {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color("]", color2)} {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%){color("]", color2)} {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}{color("]", color2)} {color("[", color2)}{color("Battery:", color1)} Plugged AC ({battery.percent}%{color("]", color2)}")
+if laptop == 'yes':
+    
+    if battery.power_plugged == True:
+        print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}{color("]", color2)} {color("[", color2)}{color("Uptime:", color1)} {up}{color("]", color2)} {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}{color("]", color2)} {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color("]", color2)} {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%){color("]", color2)} {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}{color("]", color2)} {color("[", color2)}{color("Battery:", color1)} Plugged AC ({battery.percent}%{color("]", color2)}")
+    else:
+        print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}{color("]", color2)} {color("[", color2)}{color("Uptime:", color1)} {up}{color("]", color2)} {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}{color("]", color2)} {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color("]", color2)} {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%){color("]", color2)} {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}{color("]", color2)} {color("[", color2)}{color("Battery:", color1)} {battery.percent}%{color("]", color2)}")
 else:
-    print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}{color("]", color2)} {color("[", color2)}{color("Uptime:", color1)} {up}{color("]", color2)} {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}{color("]", color2)} {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color("]", color2)} {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%){color("]", color2)} {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}{color("]", color2)} {color("[", color2)}{color("Battery:", color1)} {battery.percent}%{color("]", color2)}")
+        print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}{color("]", color2)} {color("[", color2)}{color("Uptime:", color1)} {up}{color("]", color2)} {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}{color("]", color2)} {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color("]", color2)} {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%){color("]", color2)} {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}{color("]", color2)}")
