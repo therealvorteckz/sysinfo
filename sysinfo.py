@@ -14,8 +14,8 @@ import socket
 
 # Formatting Control Characters / Color Codes / ( do not alter reset )
 reset  = '\x0f'
-color1  = '14' # bracket close/open = grey
-color2  = '04' # color for labels = red
+color1  = '14' # color for labels = grey
+color2  = '04' # color for brackets = red
 
 # Battery info for Laptops - yes or no
 laptop  = 'yes' # yes or no
