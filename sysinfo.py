@@ -14,8 +14,8 @@ import socket
 
 # Formatting Control Characters / Color Codes / ( do not alter reset )
 reset       = '\x0f'
-color1       = '14' # grey
-color2       = '04' # red
+color1       = '04' # red
+color2       = '14' # grey
 
 # IRC Color
 def color(msg: str, foreground: str, background: str='') -> str:
