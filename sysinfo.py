@@ -2,7 +2,7 @@
 # Mac SysInfo Script
 # by github.com/therealvorteckz
 # 
-# weechat/irssi - alias sysinfo exec -o sysinfo.py
+# weechat/irssi - alias sysinfo exec -o python3 sysinfo.py
 
 import psutil
 import platform
