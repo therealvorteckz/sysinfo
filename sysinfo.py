@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-# Mac OS X System Info Script
+# Mac SysInfo Script
 # by github.com/therealvorteckz
 # 
-# weechat/irssi - alias sysinfo exec -o python3 /path/to/sysinfo.py
+# weechat/irssi - alias sysinfo exec -o sysinfo.py
 
 import psutil
 import platform
@@ -13,14 +13,16 @@ import socket
 
 
 # Formatting Control Characters / Color Codes / ( do not alter reset )
-reset  = '\x0f' # do not modify this
+
+irc = 'yes' # adds IRC color codes to the results if "yes"
+reset  = '\x0f'
 color1  = '14' # color for labels = grey
 color2  = '04' # color for brackets = red
 
 # Battery info for Laptops - yes or no
 laptop  = 'yes' # yes or no
 hdd_path = '/System/Volumes/Data'  # drive path that you want to show the amount of used / free/ total space
-
+ 
 # IRC Color
 def color(msg: str, foreground: str, background: str='') -> str:
     return f'\x03{foreground},{background}{msg}{reset}' if background else f'\x03{foreground}{msg}{reset}'
@@ -65,7 +67,6 @@ os2 = platform.release()
 os3 = platform.machine()
 seconds = uptime.uptime()
 
-
 # Battery Info for Laptops
 minutes, seconds = divmod(seconds, 60)
 hours, minutes = divmod(minutes, 60)
@@ -94,11 +95,23 @@ hdd_total = convertbytes(total_hdd)
 def get_hostname():
     hostname = socket.gethostname()
     return hostname
-if laptop == 'yes':
+if irc == 'yes':
     
-    if battery.power_plugged == True:
-        print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}{color("]", color2)} {color("[", color2)}{color("Uptime:", color1)} {up}{color("]", color2)} {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}{color("]", color2)} {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color("]", color2)} {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%){color("]", color2)} {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}{color("]", color2)} {color("[", color2)}{color("Battery:", color1)} Plugged AC ({battery.percent}%){color("]", color2)}")
+    if laptop == 'yes':
+        
+        if battery.power_plugged == True:
+            print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}{color("]", color2)} {color("[", color2)}{color("Uptime:", color1)} {up}{color("]", color2)} {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}{color("]", color2)} {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color("]", color2)} {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%){color("]", color2)} {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}{color("]", color2)} {color("[", color2)}{color("Battery:", color1)} Plugged AC ({battery.percent}%){color("]", color2)}")
+        else:
+            print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}{color("]", color2)} {color("[", color2)}{color("Uptime:", color1)} {up}{color("]", color2)} {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}{color("]", color2)} {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color("]", color2)} {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%){color("]", color2)} {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}{color("]", color2)} {color("[", color2)}{color("Battery:", color1)} {battery.percent}%{color("]", color2)}")
     else:
-        print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}{color("]", color2)} {color("[", color2)}{color("Uptime:", color1)} {up}{color("]", color2)} {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}{color("]", color2)} {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color("]", color2)} {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%){color("]", color2)} {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}{color("]", color2)} {color("[", color2)}{color("Battery:", color1)} {battery.percent}%{color("]", color2)}")
+            print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}{color("]", color2)} {color("[", color2)}{color("Uptime:", color1)} {up}{color("]", color2)} {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}{color("]", color2)} {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color("]", color2)} {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%){color("]", color2)} {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}{color("]", color2)}")
 else:
-        print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}{color("]", color2)} {color("[", color2)}{color("Uptime:", color1)} {up}{color("]", color2)} {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}{color("]", color2)} {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color("]", color2)} {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%){color("]", color2)} {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}{color("]", color2)}")
+    if laptop == 'yes':
+        
+        if battery.power_plugged == True:
+            print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] [Memory: {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] [HDD: {hdd_used} / {hdd_free} / {hdd_total}] [Battery: Plugged AC ({battery.percent}%)]")
+        else:
+            print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] [Memory: {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] [HDD: {hdd_used} / {hdd_free} / {hdd_total}] [Battery: {battery.percent}%]")
+    else:
+            print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] [Memory: {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] [HDD: {hdd_used} / {hdd_free} / {hdd_total}]")
+ 
