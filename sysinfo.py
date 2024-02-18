@@ -19,6 +19,8 @@ color2  = '04' # color for labels = red
 
 # Battery info for Laptops - yes or no
 laptop  = 'yes' # yes or no
+hdd_path = '/System/Volumes/Data'  # drive path that you want to show the amount of used / free/ total space
+
 # IRC Color
 def color(msg: str, foreground: str, background: str='') -> str:
     return f'\x03{foreground},{background}{msg}{reset}' if background else f'\x03{foreground}{msg}{reset}'
@@ -78,7 +80,6 @@ else:
 
 
 # Harddrive Space (Set for Mac HDD Space / Change depedning on your machine)
-hdd_path = '/System/Volumes/Data'  # drive path that you want to show the amount of used / free/ total space
 
 used_hdd = shutil.disk_usage(hdd_path).used
 free_hdd = shutil.disk_usage(hdd_path).free
