@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Mac/Linux SysInfo Script
+# Mac SysInfo Script
 # by github.com/therealvorteckz
 # 
 # weechat/irssi - alias sysinfo exec -o sysinfo.py
