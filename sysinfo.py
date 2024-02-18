@@ -12,15 +12,13 @@ import shutil
 import socket
 
 
-
-# Battery info for Laptops - yes or no
-laptop  = 'yes' # yes or no
-
 # Formatting Control Characters / Color Codes / ( do not alter reset )
 reset  = '\x0f'
 color1  = '14' # bracket close/open = grey
 color2  = '04' # color for labels = red
 
+# Battery info for Laptops - yes or no
+laptop  = 'yes' # yes or no
 # IRC Color
 def color(msg: str, foreground: str, background: str='') -> str:
     return f'\x03{foreground},{background}{msg}{reset}' if background else f'\x03{foreground}{msg}{reset}'
@@ -80,10 +78,11 @@ else:
 
 
 # Harddrive Space (Set for Mac HDD Space / Change depedning on your machine)
+hdd_path = '/System/Volumes/Data'  # drive path that you want to show the amount of used / free/ total space
 
-used_hdd = shutil.disk_usage('/System/Volumes/Data').used
-free_hdd = shutil.disk_usage('/System/Volumes/Data').free
-total_hdd = shutil.disk_usage('/System/Volumes/Data').total
+used_hdd = shutil.disk_usage(hdd_path).used
+free_hdd = shutil.disk_usage(hdd_path).free
+total_hdd = shutil.disk_usage(hdd_path).total
 
 hdd_free = convertbytes(free_hdd)
 hdd_used = convertbytes(used_hdd)
