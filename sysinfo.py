@@ -13,7 +13,7 @@ import socket
 
 
 # Formatting Control Characters / Color Codes / ( do not alter reset )
-reset  = '\x0f'
+reset  = '\x0f' # do not modify this
 color1  = '14' # color for labels = grey
 color2  = '04' # color for brackets = red
 
