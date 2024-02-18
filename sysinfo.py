@@ -55,7 +55,7 @@ percentused = svmem.percent
 cores = psutil.cpu_count(logical=True)
 cpufreq = psutil.cpu_freq()
 cpuperc = psutil.cpu_percent()
-cpu = cpuinfo.get_cpu_info()['brand_raw'] # get only the brand name
+cpu = cpuinfo.get_cpu_info()['brand_raw'] 
 os1 = platform.system() 
 os2 = platform.release()
 os3 = platform.machine()
@@ -92,6 +92,6 @@ def get_hostname():
     return hostname
 
 if battery.power_plugged == True:
-    print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}] {color("[", color2)}{color("Uptime:", color1)} {up}] {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}] {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}] {color("[", color2)}{color("Battery:", color1)} Plugged AC ({battery.percent}%]")
+    print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}{color("]", color2)} {color("[", color2)}{color("Uptime:", color1)} {up}{color("]", color2)} {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}{color("]", color2)} {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color("]", color2)} {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%){color("]", color2)} {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}{color("]", color2)} {color("[", color2)}{color("Battery:", color1)} Plugged AC ({battery.percent}%{color("]", color2)}")
 else:
-    print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}] {color("[", color2)}{color("Uptime:", color1)} {up}] {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}] {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}] {color("[", color2)}{color("Battery:", color1)} {battery.percent}%]")
+    print(f"{color("[", color2)}{color("OS:", color1)} {os1} {os2} {os3}{color("]", color2)} {color("[", color2)}{color("Uptime:", color1)} {up}{color("]", color2)} {color("[", color2)}{color("Hostname:", color1)} {get_hostname()}{color("]", color2)} {color("[", color2)}{color("CPU:", color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color("]", color2)} {color("[", color2)}{color("Memory:",color1)} {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%){color("]", color2)} {color("[", color2)}{color("HDD:", color1)} {hdd_used} / {hdd_free} / {hdd_total}{color("]", color2)} {color("[", color2)}{color("Battery:", color1)} {battery.percent}%{color("]", color2)}")
