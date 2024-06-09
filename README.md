@@ -1,7 +1,7 @@
 # weechat/irssi/plaintext
 # python3 sysinfo.py
 # /alias add sysinfo exec -o python3 /path/to/sysinfo.py
-# dependences - pip3 install tables, pip3 install uptime
+# dependences - pip3 install tables, pip3 install uptime, pip3 install pyautogui
 
 # IRC = yes/no - for colors codes on irc or no for plaintext result
 irc = 'yes'
