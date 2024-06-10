@@ -120,3 +120,5 @@ else:
     else:
             print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] [Memory: {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] [HDD: {hdd_used} / {hdd_free} / {hdd_total}]")
  
+
+
