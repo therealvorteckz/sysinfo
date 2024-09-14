@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# MacOS X SysInfo Script
+# IRC/RAW SysInfo Script
 # by github.com/therealvorteckz
 # 
 # weechat/irssi - alias sysinfo exec -o sysinfo.py
@@ -17,11 +17,11 @@ import pyautogui
 irc = 'yes' # adds IRC color codes to the results if "yes"
 reset  = '\x0f'
 color1  = '14' # color for labels = grey
-color2  = '09' # color for brackets = red
+color2  = '04' # color for brackets = red
 
 # Battery info for Laptops - yes or no
 laptop  = 'yes' # yes or no
-hdd_path = '/System/Volumes/Data'  # drive path that you want to show the amount of used / free/ total space
+hdd_path = '/'  # drive path that you want to show the amount of used / free/ total space
  
 # IRC Color
 def color(msg: str, foreground: str, background: str='') -> str:
@@ -105,18 +105,18 @@ if irc == 'yes':
     if laptop == 'yes':
         
         if battery.power_plugged == True:
-            print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} {free} / {total}{color(']', color2)} {color('[', color2)}{color('HDD:', color1)} {hdd_used} / {hdd_total}{color(']', color2)} {color('[', color2)}{color('Display:', color1)} {displayx}x{displayy}{color(']', color2)} {color('[', color2)}{color('Battery:', color1)} Plugged AC ({battery.percent}%){color(']', color2)}")
+            print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} {free} / {total}{color(']', color2)} {color('[', color2)}{color('HDD:', color1)} {hdd_used} / {hdd_total}{color(']', color2)} {color('[', color2)}{color('Display:', color1)} {displayx}x{displayy}{color(']', color2)} {color('[', color2)}{color('Battery:', color1)} Plugged AC ({battery.percent:.2f}%){color(']', color2)}")
         else:
-            print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} {free} / {total}{color(']', color2)} {color('[', color2)}{color('HDD:', color1)} {hdd_used} / {hdd_total}{color(']', color2)} {color('[', color2)}{color('Display:', color1)} {displayx}x{displayy}{color(']', color2)} {color('[', color2)}{color('Battery:', color1)} {battery.percent}%{color(']', color2)}")
+            print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} {free} / {total}{color(']', color2)} {color('[', color2)}{color('HDD:', color1)} {hdd_used} / {hdd_total}{color(']', color2)} {color('[', color2)}{color('Display:', color1)} {displayx}x{displayy}{color(']', color2)} {color('[', color2)}{color('Battery:', color1)} {battery.percent:.2f}%{color(']', color2)}")
     else:
             print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} {free} / {total}{color(']', color2)} {color('[', color2)}{color('hDD:', color1)} {hdd_used} / {hdd_total}{color(']', color2)} {color('[', color2)}{color('Display:', color1)} {displayx}x{displayy}{color(']', color2)}")
 else:
     if laptop == 'yes':
         
         if battery.power_plugged == True:
-            print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] [Memory: {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] [HDD: {hdd_used} / {hdd_free} / {hdd_total}] [Battery: Plugged AC ({battery.percent}%)]")
+            print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] [Memory: {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] [HDD: {hdd_used} / {hdd_free} / {hdd_total}] [Battery: Plugged AC ({battery.percent:.2f}%)]")
         else:
-            print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] [Memory: {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] [HDD: {hdd_used} / {hdd_free} / {hdd_total}] [Battery: {battery.percent}%]")
+            print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] [Memory: {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] [HDD: {hdd_used} / {hdd_free} / {hdd_total}] [Battery: {battery.percent:.2f}%]")
     else:
             print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] [Memory: {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] [HDD: {hdd_used} / {hdd_free} / {hdd_total}]")
  
