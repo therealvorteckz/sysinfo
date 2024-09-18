@@ -92,11 +92,10 @@ hdd_total = convertbytes(total_hdd)
 displayx = pyautogui.size()[0] # getting the width of the screen
 displayy  = pyautogui.size()[1] # getting the height of the screen
 
-if __name__ == '__main__':
-	parser = argparse.ArgumentParser(description="-irc for IRC colors and -laptop if you have a laptop for battery info.") # The arguments without -- are required arguments.
-	parser.add_argument("-irc", action="store_true", help="IRC True or False for Coloring if True for IRC.")
-	parser.add_argument("-laptop", action="store_true", help="Laptop switch for battery stats.")
-	args = parser.parse_args()
+parser = argparse.ArgumentParser(description="-irc for IRC colors and -laptop if you have a laptop for battery info.") # The arguments without -- are required arguments.
+parser.add_argument("-irc", action="store_true", help="IRC True or False for Coloring if True for IRC.")
+parser.add_argument("-laptop", action="store_true", help="Laptop switch for battery stats.")
+args = parser.parse_args()
 
 
 # Get Machine Local Name
