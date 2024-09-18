@@ -2,9 +2,10 @@
 # IRC/RAW SysInfo Script
 # by github.com/therealvorteckz
 # 
-# weechat/irssi - alias sysinfo exec -o sysinfo.py
+# weechat/irssi - alias sysinfo exec -o sysinfo.py [-irc] [-laptop]
 
 import psutil
+import argparse
 import platform
 import cpuinfo
 import uptime
@@ -14,13 +15,10 @@ import pyautogui
 
 # Formatting Control Characters / Color Codes / ( do not alter reset )
 
-irc = 'yes' # adds IRC color codes to the results if "yes"
 reset  = '\x0f'
 color1  = '14' # color for labels = grey
-color2  = '04' # color for brackets = red
+color2  = '03' # color for brackets = red
 
-# Battery info for Laptops - yes or no
-laptop  = 'yes' # yes or no
 hdd_path = '/'  # drive path that you want to show the amount of used / free/ total space
  
 # IRC Color
@@ -58,7 +56,7 @@ percent = svmem.percent
 percentused = svmem.percent
 
 # CPU Info
-cores = psutil.cpu_count(logical=True)
+cores = psutil.cpu_count(logical=False)
 cpufreq = psutil.cpu_freq()
 cpuperc = psutil.cpu_percent()
 cpu = cpuinfo.get_cpu_info()['brand_raw'] 
@@ -94,15 +92,21 @@ hdd_total = convertbytes(total_hdd)
 displayx = pyautogui.size()[0] # getting the width of the screen
 displayy  = pyautogui.size()[1] # getting the height of the screen
 
+if __name__ == '__main__':
+	parser = argparse.ArgumentParser(description="-irc for IRC colors and -laptop if you have a laptop for battery info.") # The arguments without -- are required arguments.
+	parser.add_argument("-irc", action="store_true", help="IRC True or False for Coloring if True for IRC.")
+	parser.add_argument("-laptop", action="store_true", help="Laptop switch for battery stats.")
+	args = parser.parse_args()
 
 
 # Get Machine Local Name
 def get_hostname():
     hostname = socket.gethostname()
     return hostname
-if irc == 'yes':
+
+if args.irc == True:
     
-    if laptop == 'yes':
+    if args.laptop == True:
         
         if battery.power_plugged == True:
             print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} {free} / {total}{color(']', color2)} {color('[', color2)}{color('HDD:', color1)} {hdd_used} / {hdd_total}{color(']', color2)} {color('[', color2)}{color('Display:', color1)} {displayx}x{displayy}{color(']', color2)} {color('[', color2)}{color('Battery:', color1)} Plugged AC ({battery.percent:.2f}%){color(']', color2)}")
@@ -111,7 +115,7 @@ if irc == 'yes':
     else:
             print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} {free} / {total}{color(']', color2)} {color('[', color2)}{color('hDD:', color1)} {hdd_used} / {hdd_total}{color(']', color2)} {color('[', color2)}{color('Display:', color1)} {displayx}x{displayy}{color(']', color2)}")
 else:
-    if laptop == 'yes':
+    if args.laptop == True:
         
         if battery.power_plugged == True:
             print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] [Memory: {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] [HDD: {hdd_used} / {hdd_free} / {hdd_total}] [Battery: Plugged AC ({battery.percent:.2f}%)]")
