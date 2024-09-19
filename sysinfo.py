@@ -2,7 +2,7 @@
 # IRC/RAW SysInfo Script
 # by github.com/therealvorteckz
 # 
-# weechat/irssi - alias sysinfo exec -o sysinfo.py [-irc] [-laptop]
+# weechat/irssi - alias sysinfo exec -o python3 sysinfo.py [-irc] [-laptop]
 
 import psutil
 import argparse
