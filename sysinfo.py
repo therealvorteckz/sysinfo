@@ -8,16 +8,14 @@ import psutil
 import argparse
 import platform
 import cpuinfo
-import uptime
 import shutil
 import socket
-import pyautogui 
+import uptime
 
 # Formatting Control Characters / Color Codes / ( do not alter reset )
-
 reset  = '\x0f'
 color1  = '14' # color for labels = grey
-color2  = '03' # color for brackets = red
+color2  = '04' # color for brackets = red
 
 hdd_path = '/'  # drive path that you want to show the amount of used / free/ total space
  
@@ -71,7 +69,6 @@ hours, minutes = divmod(minutes, 60)
 days, hours = divmod(hours, 24)
 battery = psutil.sensors_battery()
 
-# Uptime Line
 if days > 0:
     up = ("%d day(s) %d hr(s) %d minute(s)" % (days, hours, minutes))
 else:
@@ -88,38 +85,31 @@ hdd_free = convertbytes(free_hdd)
 hdd_used = convertbytes(used_hdd)
 hdd_total = convertbytes(total_hdd)
 
-
-displayx = pyautogui.size()[0] # getting the width of the screen
-displayy  = pyautogui.size()[1] # getting the height of the screen
-
 parser = argparse.ArgumentParser(description="-irc for IRC colors and -laptop if you have a laptop for battery info.") # The arguments without -- are required arguments.
 parser.add_argument("-irc", action="store_true", help="IRC True or False for Coloring if True for IRC.")
 parser.add_argument("-laptop", action="store_true", help="Laptop switch for battery stats.")
 args = parser.parse_args()
 
-
-# Get Machine Local Name
 def get_hostname():
     hostname = socket.gethostname()
     return hostname
 
 if args.irc == True:
-    
     if args.laptop == True:
         
         if battery.power_plugged == True:
-            print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} {free} / {total}{color(']', color2)} {color('[', color2)}{color('HDD:', color1)} {hdd_used} / {hdd_total}{color(']', color2)} {color('[', color2)}{color('Display:', color1)} {displayx}x{displayy}{color(']', color2)} {color('[', color2)}{color('Battery:', color1)} Plugged AC ({battery.percent:.2f}%){color(']', color2)}")
+            print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} Used {used} / Free {free} / Total {total}({percent:.2f}%){color(']', color2)} {color('[', color2)}{color('HDD:', color1)} {hdd_used} / {hdd_total}{color(']', color2)} {color('[', color2)}{color('Battery:', color1)} Plugged AC ({battery.percent:.2f}%){color(']', color2)}")
         else:
-            print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} {free} / {total}{color(']', color2)} {color('[', color2)}{color('HDD:', color1)} {hdd_used} / {hdd_total}{color(']', color2)} {color('[', color2)}{color('Display:', color1)} {displayx}x{displayy}{color(']', color2)} {color('[', color2)}{color('Battery:', color1)} {battery.percent:.2f}%{color(']', color2)}")
+            print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} Used {used} / Free {free} / Total {total}({percent:.2f}%){color(']', color2)} {color('[', color2)}{color('HDD:', color1)} {hdd_used} / {hdd_total}{color(']', color2)} {color('[', color2)}{color('Battery:', color1)} {battery.percent:.2f}%{color(']', color2)}")
     else:
-            print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} {free} / {total}{color(']', color2)} {color('[', color2)}{color('hDD:', color1)} {hdd_used} / {hdd_total}{color(']', color2)} {color('[', color2)}{color('Display:', color1)} {displayx}x{displayy}{color(']', color2)}")
+            print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} Used {used} / Free {free} / Total {total}({percent:.2f}%){color(']', color2)} {color('[', color2)}{color('HDD:', color1)} Used {hdd_used} / Total {hdd_total}{color(']', color2)}{reset}")          
 else:
     if args.laptop == True:
         
         if battery.power_plugged == True:
-            print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] [Memory: {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] [HDD: {hdd_used} / {hdd_free} / {hdd_total}] [Battery: Plugged AC ({battery.percent:.2f}%)]")
+            print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu} / {cores}x Cores / Load {cpuperc}%] [Memory: Used {used} / Free {free} / Total {total}({percent:.2f}%)] [HDD: Used {hdd_used} / Free {hdd_free} / Total {hdd_total}] [Battery: Plugged AC ({battery.percent:.2f}%)]")
         else:
-            print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] [Memory: {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] [HDD: {hdd_used} / {hdd_free} / {hdd_total}] [Battery: {battery.percent:.2f}%]")
+            print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu} / {cores}x Cores / Load {cpuperc}%] [Memory: Used {used} / Free {free} / Total {total}({percent:.2f}%)] [HDD: Used {hdd_used} / Free {hdd_free} / Total {hdd_total}] [Battery: {battery.percent:.2f}%]")
     else:
-            print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu}{reset} / {cores}x Cores / Load {cpuperc}%] [Memory: {reset}{total} / Used {used}({percent:.2f}%) / Free {free}({100 - percentused}%)] [HDD: {hdd_used} / {hdd_free} / {hdd_total}]")
+            print(f"[OS: {os1} {os2} {os3}] [Uptime: {up}] [Hostname: {get_hostname()}] [CPU: {cpu} / {cores}x Cores / Load {cpuperc}%] [Memory: Used {used} / Free {free} / Total {total}({percent:.2f}%)] [HDD: Used {hdd_used} / Free {hdd_free} / Total {hdd_total}]")
  
