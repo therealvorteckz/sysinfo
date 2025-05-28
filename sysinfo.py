@@ -51,7 +51,6 @@ total = convertbytes(svmem.total)
 used = convertbytes(svmem.used)
 free = convertbytes(svmem.available)
 percent = svmem.percent
-percentused = svmem.percent
 
 # CPU Info
 cores = psutil.cpu_count(logical=False)
