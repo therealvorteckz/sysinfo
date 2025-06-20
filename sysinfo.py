@@ -11,6 +11,9 @@ import cpuinfo
 import shutil
 import socket
 import uptime
+import distro
+
+distribution_name = distro.name()
 
 # Formatting Control Characters / Color Codes / ( do not alter reset )
 reset  = '\x0f'
@@ -68,10 +71,7 @@ hours, minutes = divmod(minutes, 60)
 days, hours = divmod(hours, 24)
 battery = psutil.sensors_battery()
 
-if days > 0:
-    up = ("%d day(s) %d hr(s) %d minute(s)" % (days, hours, minutes))
-else:
-    up = ("%d hr(s) %d minute(s)" % (hours, minutes))
+up = ("%d day(s) %d hr(s) %d minute(s)" % (days, hours, minutes))
 
 
 # Harddrive Space (Set for Mac HDD Space / Change depedning on your machine)
@@ -97,11 +97,11 @@ if args.irc == True:
     if args.laptop == True:
         
         if battery.power_plugged == True:
-            print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} Used {used} / Free {free} / Total {total}({percent:.2f}%){color(']', color2)} {color('[', color2)}{color('HDD:', color1)} Used {hdd_used} / Total {hdd_total}{color(']', color2)}{reset} {color('[', color2)}{color('Battery:', color1)} Plugged AC ({battery.percent:.2f}%){color(']', color2)}")
+            print(f"{color('[', color2)}{reset}sysinfo.py{color(']',color2)}\n{color('[', color2)}{color('Distro:', color1)} {distribution_name}{color(']', color2)} {color('[', color2)}{color('Kernel:', color1)} {os1} {os2} {os3}{color(']', color2)}\n{color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)}\n{color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)}\n{color('[', color2)}{color('Memory:',color1)} Used {used} / Free {free} / Total {total}({percent:.2f}%){color(']', color2)}\n{color('[', color2)}{color('HDD:', color1)} Used {hdd_used} / Free {hdd_free} / Total {hdd_total}{color(']', color2)}{reset}\n{color('[', color2)}{color('Battery:', color1)} Plugged AC ({battery.percent:.2f}%){color(']', color2)}")
         else:
-            print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} Used {used} / Free {free} / Total {total}({percent:.2f}%){color(']', color2)} {color('[', color2)}{color('HDD:', color1)} Used {hdd_used} / Total {hdd_total}{color(']', color2)}{reset} {color('[', color2)}{color('Battery:', color1)} {battery.percent:.2f}%{color(']', color2)}")
+            print(f"{color('[', color2)}{reset}sysinfo.py{color(']',color2)}\n{color('[', color2)}{color('Distro:', color1)} {distribution_name}{color(']', color2)} {color('[', color2)}{color('Kernel:', color1)} {os1} {os2} {os3}{color(']', color2)}\n{color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)}\n{color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)}\n{color('[', color2)}{color('Memory:',color1)} Used {used} / Free {free} / Total {total}({percent:.2f}%){color(']', color2)}\n{color('[', color2)}{color('HDD:', color1)} Used {hdd_used} / Free {hdd_free} / Total {hdd_total}{color(']', color2)}{reset}\n{color('[', color2)}{color('Battery:', color1)} {battery.percent:.2f}%{color(']', color2)}")
     else:
-            print(f"{color('[', color2)}{color('OS:', color1)} {os1} {os2} {os3}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)} {color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)} {color('[', color2)}{color('Memory:',color1)} Used {used} / Free {free} / Total {total}({percent:.2f}%){color(']', color2)} {color('[', color2)}{color('HDD:', color1)} Used {hdd_used} / Total {hdd_total}{color(']', color2)}{reset}")          
+            print(f"{color('[', color2)}{reset}sysinfo.py{color(']',color2)}\n{color('[', color2)}{color('Distro:', color1)} {distribution_name}{color(']', color2)} {color('[', color2)}{color('Kernel:', color1)} {os1} {os2} {os3}{color(']', color2)}\n{color('[', color2)}{color('Hostname:', color1)} {get_hostname()}{color(']', color2)} {color('[', color2)}{color('Uptime:', color1)} {up}{color(']', color2)}\n{color('[', color2)}{color('CPU:', color1)} {cpu}{reset} / {cores}x Cores / Load {cpuperc}%{color(']', color2)}\n{color('[', color2)}{color('Memory:',color1)} Used {used} / Free {free} / Total {total}({percent:.2f}%){color(']', color2)}\n{color('[', color2)}{color('HDD:', color1)} Used {hdd_used} / Free {hdd_free} / Total {hdd_total}{color(']', color2)}{reset}")          
 else:
     if args.laptop == True:
         
